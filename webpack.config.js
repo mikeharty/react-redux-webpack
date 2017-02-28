@@ -28,7 +28,8 @@ if(!dev) {
   postCssOptions.push(require('cssnano'));
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false }
+        compress: { warnings: false },
+        sourceMap: true
       }
     )
   );
@@ -41,7 +42,7 @@ const config = {
     filename: outputName+'.js',
     publicPath: '/assets/'
   },
-  devtool: 'source-map',
+  devtool: dev? 'inline-source-map' : 'source-map',
   module: {
     rules: [
       {
