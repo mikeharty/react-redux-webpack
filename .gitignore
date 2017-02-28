@@ -38,9 +38,3 @@ jspm_packages
 
 # Jetbrains IDE
 .idea
-
-bin/**/*.map
-
-# Mac Junk
-.DS_Store
-

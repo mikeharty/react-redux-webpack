@@ -5,13 +5,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const dev = process.env.NODE_ENV === 'development';
 
-// todo: Webpack hash in file name?
 const outputName = 'bundle';
 
 const postCssOptions = [
   autoprefixer({
     browsers: ['ie 8-11', 'last 10 versions'],
-    map: dev
+    map: true
   })
 ];
 
@@ -25,12 +24,14 @@ const plugins = [
   new ExtractTextPlugin(outputName+'.css'),
 ];
 
-if (!dev) {
+if(!dev) {
   postCssOptions.push(require('cssnano'));
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    })
+        compress: { warnings: false },
+        sourceMap: true
+      }
+    )
   );
 }
 
@@ -41,7 +42,7 @@ const config = {
     filename: outputName+'.js',
     publicPath: '/assets/'
   },
-  devtool: dev ? 'source-map' : false,
+  devtool: dev? 'inline-source-map' : 'source-map',
   module: {
     rules: [
       {
@@ -50,6 +51,12 @@ const config = {
         use: [
           {
             loader: 'babel-loader',
+            query: {
+              presets: [
+                ['es2015', {modules: false}], 'es2016', 'es2017'
+              ],
+              plugins: ['lodash', 'transform-react-jsx']
+            }
           },
           {
             loader: 'eslint-loader',
@@ -69,7 +76,7 @@ const config = {
               options: {
                 importLoaders: true,
                 localIdentName: '[hash:base64]-[name]-[local]',
-                sourceMap: dev
+                sourceMap: true
               }
             },
             {
@@ -78,7 +85,7 @@ const config = {
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: dev,
+                sourceMap: true,
                 includePaths: [path.resolve(__dirname, './src')]
               }
             }
