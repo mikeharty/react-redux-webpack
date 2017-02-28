@@ -5,13 +5,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const dev = process.env.NODE_ENV === 'development';
 
-// todo: Webpack hash in file name?
 const outputName = 'bundle';
 
 const postCssOptions = [
   autoprefixer({
     browsers: ['ie 8-11', 'last 10 versions'],
-    map: dev
+    map: true
   })
 ];
 
@@ -42,7 +41,7 @@ const config = {
     filename: outputName+'.js',
     publicPath: '/assets/'
   },
-  devtool: dev ? 'source-map' : false,
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -76,7 +75,7 @@ const config = {
               options: {
                 importLoaders: true,
                 localIdentName: '[hash:base64]-[name]-[local]',
-                sourceMap: dev
+                sourceMap: true
               }
             },
             {
@@ -85,7 +84,7 @@ const config = {
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: dev,
+                sourceMap: true,
                 includePaths: [path.resolve(__dirname, './src')]
               }
             }
