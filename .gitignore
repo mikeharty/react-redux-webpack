@@ -40,3 +40,7 @@ jspm_packages
 .idea
 
 bin/**/*.map
+
+# Mac Junk
+.DS_Store
+

@@ -25,13 +25,12 @@ const plugins = [
   new ExtractTextPlugin(outputName+'.css'),
 ];
 
-if(!dev) {
+if (!dev) {
   postCssOptions.push(require('cssnano'));
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false }
-      }
-    )
+      compress: { warnings: false }
+    })
   );
 }
 
@@ -51,12 +50,6 @@ const config = {
         use: [
           {
             loader: 'babel-loader',
-            query: {
-              presets: [
-                ['es2015', {modules: false}], 'es2016', 'es2017'
-              ],
-              plugins: ['lodash', 'transform-react-jsx']
-            }
           },
           {
             loader: 'eslint-loader',
