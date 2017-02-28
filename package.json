@@ -4,8 +4,8 @@
   "description": "MVC React+Redux+Webpack build",
   "main": "index.js",
   "scripts": {
-    "test": "env NODE_ENV=test ava --verbose",
-    "test:watch": "env NODE_ENV=test ava --verbose --watch",
+    "test": "env NODE_ENV=test ava",
+    "test:watch": "npm run test -- --watch",
     "coverage": "env NODE_ENV=test nyc ava",
     "build": "env NODE_ENV=production webpack",
     "dev": "env NODE_ENV=development webpack-dev-server --content-base bin/ --progress --colors --watch-poll --inline"
