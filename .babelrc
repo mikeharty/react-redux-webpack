@@ -1,0 +1,13 @@
+{
+  "env": {
+    "test": {
+      "presets": ["es2015", "react"]
+    }
+  },
+  "presets": [
+    ["env", {modules: false, targets: {
+      "browsers": ["last 2 versions", "ie >= 10"]
+    }}]
+  ],
+  "plugins": ["lodash", "transform-react-jsx"]
+}

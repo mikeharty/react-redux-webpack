@@ -38,3 +38,6 @@ jspm_packages
 
 # Jetbrains IDE
 .idea
+
+# Mac stuff
+.DS_Store
